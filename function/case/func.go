@@ -32,4 +32,17 @@ func LogMiddleware(in SumFunc) SumFunc {
 //闭包（Closure）：
 //返回的函数是一个闭包，捕获了外部函数的 in，因此可以调用原始函数。
 //装饰器模式：
-//不修改 in 的逻辑，而是通过包装添加额外功能（日志记录）。
+//不修改 in 的逻辑，而是通过包装添加额外功能（日志记录） 。
+
+// 声明receiver为函数类型的方法，即函数类型的对象的方法
+func (sum SumFunc) Accumulation(list ...int) (int, error) {
+	s := 0
+	var err error
+	for _, i := range list {
+		s, err := sum(s, i)
+		if err != nil {
+			return s, err
+		}
+	}
+	return s, err
+}
