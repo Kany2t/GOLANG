@@ -18,7 +18,7 @@ func Query() {
 	res = DB.Take(&t)
 	println(res.RowsAffected, res.Error, t)
 
-	//将结果填充到集合不支持特殊类型处理，无法完成类型转换
+	//将结果填充到集合，不支持特殊类型处理，无法完成类型转换
 	result := map[string]interface{}{}
 	res = DB.Model(&Teacher{}).Omit("	Birthday", "Roles", "JobInfo2").First(&result)
 	println(res.RowsAffected, res.Error, result)

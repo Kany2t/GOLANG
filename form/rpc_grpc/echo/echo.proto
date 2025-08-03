@@ -1,0 +1,47 @@
+syntax="proto3";
+option go_package="grpc/echo";
+package echo.voice.com;
+
+
+message User{
+  string name = 1;
+  int32 age = 2;
+  Address addr = 3;
+  google.protobuf.Timestamp birthday = 4;
+  bytes data =5;
+  Gender gender = 6;
+  repeated string hobbies = 7;
+  reserved 8 to 10;//保留字段
+
+}
+message Address{
+  string   province = 1;
+  string    city = 2;
+}
+
+message EchoMsg{
+  string name = 1;
+  int32 age = 2;
+  Address addr = 3;
+  google.protobuf.Timestamp birthday = 4;
+  bytes data =5;
+  Gender gender = 6;
+  repeated string hobbies = 7;
+  reserved 8 to 10;//保留字段
+}
+
+
+import "google/protobuf/timestamp.proto";
+enum Gender{
+  MALE = 0;
+  FEMALE = 1;
+}
+message EchoResponse{
+  bool ok = 1;
+}
+service Echo{
+  //一元请求
+  rpc UnaryEcho(EchoMsg) returns (EchoMsg){}
+  //客户端流
+  rpc ClientStreamEcho(stream EchoMsg) returns (EchoResponse){}
+}

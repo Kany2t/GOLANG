@@ -21,6 +21,7 @@ func Transaction() {
 			tx1.Create(t1)
 			return errors.New("rollback t1")
 		})
+		//整体回滚
 
 		tx.Transaction(func(tx2 *gorm.DB) error {
 			if err := tx2.Create(&t2).Error; err != nil {

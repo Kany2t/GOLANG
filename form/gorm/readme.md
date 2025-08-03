@@ -19,7 +19,7 @@
 #数据查询操作
 1.指定表或者model
 2.正向选择或者反向选择那些字段查询
-3.wher子句构建（and，or，in，out）查询条件
+3.where子句构建（and，or，in，out）查询条件
 4.orderby子句
 5.limit子句
 6.group having子句
